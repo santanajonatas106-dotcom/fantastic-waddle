@@ -1,0 +1,20 @@
+<%- include('partials/header', { title: 'Criar currículo' }) %>
+<section class="form-wrap">
+  <div class="section-heading"><span class="badge">Etapa 1 de 2</span><h1>Conte sua trajetória profissional</h1><p>Use informações verdadeiras. Você poderá conferir tudo antes de baixar.</p></div>
+  <% if (error) { %><div class="alert"><%= error %></div><% } %>
+  <form class="form-card" method="post" action="/criar">
+    <div class="grid2">
+      <label>Nome completo*<input name="full_name" required value="<%= values.full_name || '' %>"></label>
+      <label>Cargo desejado*<input name="target_role" required placeholder="Ex.: Auxiliar administrativo" value="<%= values.target_role || '' %>"></label>
+      <label>E-mail<input name="email" type="email" value="<%= values.email || '' %>"></label>
+      <label>Telefone<input name="phone" value="<%= values.phone || '' %>"></label>
+      <label class="full">Cidade e estado<input name="city" placeholder="Ex.: São Paulo - SP" value="<%= values.city || '' %>"></label>
+      <label class="full">Resumo profissional <small>Deixe em branco para a IA ajudar</small><textarea name="professional_summary" rows="4"><%= values.professional_summary || '' %></textarea></label>
+      <label class="full">Experiência profissional<textarea name="experience" rows="6" placeholder="Empresa, cargo, período e principais atividades"><%= values.experience || '' %></textarea></label>
+      <label class="full">Formação<textarea name="education" rows="4" placeholder="Curso, instituição e ano"><%= values.education || '' %></textarea></label>
+      <label class="full">Competências<textarea name="skills" rows="3" placeholder="Ex.: atendimento, informática, organização"><%= values.skills || '' %></textarea></label>
+    </div>
+    <button class="button primary" type="submit">Gerar visualização</button>
+  </form>
+</section>
+<%- include('partials/footer') %>

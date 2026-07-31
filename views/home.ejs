@@ -1,0 +1,25 @@
+<%- include('partials/header', { title: 'Crie seu currículo profissional' }) %>
+<section class="hero">
+  <div>
+    <span class="badge">Simples, rápido e profissional</span>
+    <h1>Seu currículo pronto para conquistar oportunidades.</h1>
+    <p>Preencha seus dados, receba ajuda da IA e gere um PDF organizado em poucos minutos.</p>
+    <a class="button primary" href="/criar">Criar meu currículo</a>
+    <p class="price">PDF completo por <strong><%= Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></strong></p>
+  </div>
+  <div class="resume-card">
+    <div class="resume-head"></div>
+    <div class="resume-line wide"></div><div class="resume-line"></div>
+    <div class="resume-title"></div><div class="resume-line wide"></div><div class="resume-line wide"></div>
+    <div class="resume-title"></div><div class="resume-line wide"></div><div class="resume-line"></div>
+  </div>
+</section>
+<section class="steps">
+  <h2>Como funciona</h2>
+  <div class="grid3">
+    <article><b>1</b><h3>Preencha seus dados</h3><p>Informe experiências, formação e habilidades.</p></article>
+    <article><b>2</b><h3>Melhore com IA</h3><p>Receba um resumo profissional mais claro e objetivo.</p></article>
+    <article><b>3</b><h3>Baixe em PDF</h3><p>Confira o resultado e gere seu documento profissional.</p></article>
+  </div>
+</section>
+<%- include('partials/footer') %>
