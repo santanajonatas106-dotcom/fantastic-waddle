@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const requiredInProduction = ['SESSION_SECRET', 'DATABASE_URL'];
+const requiredInProduction = ['SESSION_SECRET', 'DATABASE_URL', 'APP_URL', 'MERCADO_PAGO_ACCESS_TOKEN'];
 if (process.env.NODE_ENV === 'production') {
   for (const key of requiredInProduction) {
     if (!process.env[key]) throw new Error(`Variável obrigatória ausente: ${key}`);
@@ -15,5 +15,5 @@ module.exports = {
   databaseUrl: process.env.DATABASE_URL || '',
   openaiApiKey: process.env.OPENAI_API_KEY || '',
   mercadoPagoAccessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN || '',
-  priceBrl: Number(process.env.PRICE_BRL || 7.9)
+  priceBrl: Number(process.env.PRICE_BRL || 5.9)
 };

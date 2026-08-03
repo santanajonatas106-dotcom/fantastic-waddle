@@ -1,6 +1,23 @@
 <%- include('partials/header', { title: 'Visualizar currículo' }) %>
 <section class="preview-wrap">
-  <div class="section-heading"><span class="badge">Etapa 2 de 2</span><h1>Seu currículo está pronto</h1><p>Confira as informações antes de gerar o PDF.</p></div>
+  <div class="section-heading">
+    <span class="badge">Etapa 2 de 2</span>
+    <h1>Seu currículo está pronto</h1>
+    <p>Confira as informações antes de pagar e gerar o PDF.</p>
+  </div>
+
+  <% if (paymentStatus === 'aprovado' || resume.paid) { %>
+    <div class="alert success">Pagamento aprovado. Seu PDF está liberado.</div>
+  <% } else if (paymentStatus === 'pendente') { %>
+    <div class="alert warning">Pagamento pendente. Aguarde a aprovação e atualize esta página.</div>
+  <% } else if (paymentStatus === 'falhou') { %>
+    <div class="alert">O pagamento não foi aprovado. Você pode tentar novamente.</div>
+  <% } else if (paymentStatus === 'nao-confirmado') { %>
+    <div class="alert warning">Ainda não foi possível confirmar o pagamento. Aguarde alguns instantes e atualize a página.</div>
+  <% } else if (paymentStatus === 'necessario') { %>
+    <div class="alert warning">O PDF só pode ser gerado depois do pagamento aprovado.</div>
+  <% } %>
+
   <article class="paper">
     <h1><%= resume.full_name %></h1>
     <h2><%= resume.target_role %></h2>
@@ -10,10 +27,25 @@
     <% if (resume.education) { %><h3>Formação</h3><p class="preserve"><%= resume.education %></p><% } %>
     <% if (resume.skills) { %><h3>Competências</h3><p class="preserve"><%= resume.skills %></p><% } %>
   </article>
+
   <div class="actions">
     <a class="button secondary" href="/criar">Editar dados</a>
-    <a class="button primary" href="/curriculo/<%= resume.id || 'rascunho' %>/pdf">Baixar PDF de teste</a>
+
+    <% if (resume.paid) { %>
+      <a class="button primary" href="/curriculo/<%= resume.id %>/pdf">Baixar PDF</a>
+    <% } else if (paymentEnabled) { %>
+      <form method="post" action="/curriculo/<%= resume.id %>/pagar" class="payment-form">
+        <button class="button primary" type="submit">
+          Pagar <%= Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %> e liberar PDF
+        </button>
+      </form>
+    <% } else { %>
+      <button class="button primary" type="button" disabled>Pagamento indisponível</button>
+    <% } %>
   </div>
-  <p class="note">Pagamento de <strong><%= Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></strong> será ativado após cadastrarmos as credenciais do Mercado Pago.</p>
+
+  <% if (!resume.paid) { %>
+    <p class="note">Você será levado ao Mercado Pago. O PDF será liberado somente após a confirmação do pagamento.</p>
+  <% } %>
 </section>
 <%- include('partials/footer') %>
