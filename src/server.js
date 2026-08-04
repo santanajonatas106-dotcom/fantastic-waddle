@@ -27,6 +27,9 @@ app.use(session({
 }));
 
 app.get('/health', (_req, res) => res.status(200).json({ ok: true }));
+app.get('/quem-somos', (req, res) => {
+  res.render('quem-somos');
+});
 app.use(siteRoutes);
 app.use((_req, res) => res.status(404).send('Página não encontrada.'));
 app.use((error, _req, res, _next) => {
