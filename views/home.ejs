@@ -1,25 +1,89 @@
 <%- include('partials/header', { title: 'Crie seu currículo profissional' }) %>
+
 <section class="hero">
   <div>
     <span class="badge">Simples, rápido e profissional</span>
-    <h1>Seu currículo pronto para conquistar oportunidades.</h1>
-    <p>Preencha seus dados, receba ajuda da IA e gere um PDF organizado em poucos minutos.</p>
-    <a class="button primary" href="/criar">Criar meu currículo</a>
-    <p class="price">PDF completo por <strong><%= Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></strong></p>
+
+    <h1>Crie um currículo profissional com IA em menos de 3 minutos</h1>
+
+    <p>
+      Preencha seus dados, deixe a Inteligência Artificial organizar seu currículo
+      e baixe um PDF profissional pronto para enviar às empresas.
+    </p>
+
+    <a class="button primary" href="/criar">
+      Criar meu currículo agora
+    </a>
+
+    <p class="price">
+      PDF profissional por apenas
+      <strong>
+        <%= Number(price).toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        }) %>
+      </strong>
+    </p>
+
+    <p>Pagamento seguro processado pelo Mercado Pago.</p>
   </div>
+
   <div class="resume-card">
     <div class="resume-head"></div>
-    <div class="resume-line wide"></div><div class="resume-line"></div>
-    <div class="resume-title"></div><div class="resume-line wide"></div><div class="resume-line wide"></div>
-    <div class="resume-title"></div><div class="resume-line wide"></div><div class="resume-line"></div>
+    <div class="resume-line wide"></div>
+    <div class="resume-line"></div>
+    <div class="resume-title"></div>
+    <div class="resume-line wide"></div>
+    <div class="resume-line"></div>
+    <div class="resume-title"></div>
+    <div class="resume-line wide"></div>
+    <div class="resume-line"></div>
   </div>
 </section>
+
 <section class="steps">
   <h2>Como funciona</h2>
+
   <div class="grid3">
-    <article><b>1</b><h3>Preencha seus dados</h3><p>Informe experiências, formação e habilidades.</p></article>
-    <article><b>2</b><h3>Melhore com IA</h3><p>Receba um resumo profissional mais claro e objetivo.</p></article>
-    <article><b>3</b><h3>Baixe em PDF</h3><p>Confira o resultado e gere seu documento profissional.</p></article>
+    <article>
+      <b>1</b>
+      <h3>Preencha seus dados</h3>
+      <p>Informe suas experiências, formação e habilidades.</p>
+    </article>
+
+    <article>
+      <b>2</b>
+      <h3>Melhore com IA</h3>
+      <p>Receba um currículo mais claro, organizado e profissional.</p>
+    </article>
+
+    <article>
+      <b>3</b>
+      <h3>Baixe em PDF</h3>
+      <p>Faça o pagamento seguro e receba seu currículo pronto.</p>
+    </article>
   </div>
 </section>
+
+<section class="steps">
+  <h2>Por que usar o CurriculoFacil IA?</h2>
+
+  <div class="grid3">
+    <article>
+      <h3>Rápido e simples</h3>
+      <p>Crie seu currículo pelo celular em poucos minutos.</p>
+    </article>
+
+    <article>
+      <h3>Visual profissional</h3>
+      <p>Receba um PDF organizado e pronto para enviar às empresas.</p>
+    </article>
+
+    <article>
+      <h3>Preço acessível</h3>
+      <p>Currículo profissional por apenas R$ 5,90.</p>
+    </article>
+  </div>
+</section>
+
 <%- include('partials/footer') %>
