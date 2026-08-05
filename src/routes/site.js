@@ -172,5 +172,9 @@ router.get('/curriculo/:id/pdf', async (req, res, next) => {
 
 router.get('/privacidade', (req, res) => res.render('privacy'));
 router.get('/termos', (req, res) => res.render('terms'));
+router.get('/blog', (req, res) => {
+  res.render('blog');
+});
 
 module.exports = router;
+
