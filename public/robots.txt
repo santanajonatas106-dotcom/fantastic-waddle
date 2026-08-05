@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://curriculofacil.app.br/sitemap.xml
