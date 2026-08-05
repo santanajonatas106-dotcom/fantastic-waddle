@@ -175,6 +175,8 @@ router.get('/termos', (req, res) => res.render('terms'));
 router.get('/blog', (req, res) => {
   res.render('blog');
 });
-
+router.get('/blog/primeiro-emprego', (req, res) => {
+  res.render('artigo-primeiro-emprego');
+});
 module.exports = router;
 
