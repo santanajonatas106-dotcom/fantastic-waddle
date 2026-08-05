@@ -187,5 +187,8 @@ router.get('/quem-somos', (req, res) => {
 router.get('/blog/curriculo-primeira-entrevista', (req, res) => {
   res.render('artigo-curriculo-primeira-entrevista');
 });
+router.get('/blog/curriculo-sem-experiencia', (req, res) => {
+  res.render('artigo-curriculo-sem-experiencia');
+});
 module.exports = router;
 
