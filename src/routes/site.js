@@ -187,6 +187,6 @@ router.get('/quem-somos', (req, res) => {
 router.get('/blog/curriculo-primeira-entrevista', (req, res) => {
   res.render('artigo-curriculo-primeira-entrevista');
 });
-0module.exports = router;
+module.exports = router;
 
 nano src/routes/site.js
