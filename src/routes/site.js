@@ -189,4 +189,3 @@ router.get('/blog/curriculo-primeira-entrevista', (req, res) => {
 });
 module.exports = router;
 
-nano src/routes/site.js
