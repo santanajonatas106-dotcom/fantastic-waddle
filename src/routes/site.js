@@ -184,5 +184,9 @@ router.get('/depoimentos', (req, res) => {
 router.get('/quem-somos', (req, res) => {
   res.render('quem-somos');
 });
-module.exports = router;
+router.get('/blog/curriculo-primeira-entrevista', (req, res) => {
+  res.render('artigo-curriculo-primeira-entrevista');
+});
+0module.exports = router;
 
+nano src/routes/site.js
