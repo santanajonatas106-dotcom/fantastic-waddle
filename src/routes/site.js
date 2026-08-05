@@ -190,5 +190,11 @@ router.get('/blog/curriculo-primeira-entrevista', (req, res) => {
 router.get('/blog/curriculo-sem-experiencia', (req, res) => {
   res.render('artigo-curriculo-sem-experiencia');
 });
+router.get('/blog/objetivo-curriculo', (req, res) => {
+  res.render('artigo-objetivo-curriculo');
+});
 module.exports = router;
+
+
+
 
