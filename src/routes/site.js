@@ -181,5 +181,8 @@ router.get('/blog/primeiro-emprego', (req, res) => {
 router.get('/depoimentos', (req, res) => {
   res.render('depoimentos');
 });
+router.get('/quem-somos', (req, res) => {
+  res.render('quem-somos');
+});
 module.exports = router;
 
