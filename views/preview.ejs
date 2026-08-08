@@ -55,7 +55,13 @@ Pagar <%= Number(price).toLocaleString('pt-BR', { style: 'currency', currency: '
     gtag('event', 'purchase', {
       transaction_id: '<%= resume.id %>',
       value: <%= Number(price) %>,
-      currency: 'BRL'
+      currency: 'BRL',
+      items: [{
+        item_id: 'curriculo_pdf',
+        item_name: 'Currículo profissional em PDF',
+        price: <%= Number(price) %>,
+        quantity: 1
+      }]
     });
   }
 </script>
