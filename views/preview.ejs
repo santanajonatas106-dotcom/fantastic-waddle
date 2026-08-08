@@ -48,4 +48,15 @@
     <p class="note">Você será levado ao Mercado Pago. O PDF será liberado somente após a confirmação do pagamento.</p>
   <% } %>
 </section>
+<% if (paymentStatus === 'aprovado') { %>
+<script>
+  if (typeof gtag === 'function') {
+    gtag('event', 'purchase', {
+      transaction_id: '<%= resume.id %>',
+      value: <%= Number(price) %>,
+      currency: 'BRL'
+    });
+  }
+</script>
+<% } %>
 <%- include('partials/footer') %>
