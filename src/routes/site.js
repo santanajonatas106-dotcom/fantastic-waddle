@@ -72,13 +72,29 @@ router.post('/criar', upload.single('foto'), async (req, res, next) => {
       return res.status(503).send('Banco de dados não configurado. O pagamento exige que o currículo seja salvo.');
     }
 
-    const result = await pool.query(
-      INSERT INTO resumes (
-  full_name,email,phone,city,target_role,professional_summary,
-  experience,education,skills,photo_data,photo_mime
-)
-VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING id
-    [values.full_name, values.email, values.phone, values.city, values.target_role, values.professional_summary, values.experience, values.education, values.skills, req.file ? req.file.buffer : null, req.file ? req.file.mimetype : null]
+  
+  const result = await pool.query(
+  `INSERT INTO resumes (
+    full_name, email, phone, city, target_role, professional_summary,
+    experience, education, skills, photo_data, photo_mime
+  )
+  VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+  RETURNING id`,
+  [
+    values.full_name,
+    values.email,
+    values.phone,
+    values.city,
+    values.target_role,
+    values.professional_summary,
+    values.experience,
+    values.education,
+    values.skills,
+    req.file ? req.file.buffer : null,
+    req.file ? req.file.mimetype : null
+  ]
+);
+    const id = result.rows[0].id;
     req.session.resumeId = id;
     res.redirect(`/curriculo/${id}`);
   } catch (error) {
