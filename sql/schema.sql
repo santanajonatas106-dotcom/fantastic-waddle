@@ -26,3 +26,5 @@ CREATE TABLE IF NOT EXISTS resumes (
 
 CREATE INDEX IF NOT EXISTS resumes_user_id_idx ON resumes(user_id);
 CREATE INDEX IF NOT EXISTS resumes_payment_id_idx ON resumes(payment_id);
+ALTER TABLE resumes ADD COLUMN IF NOT EXISTS photo_data BYTEA;
+ALTER TABLE resumes ADD COLUMN IF NOT EXISTS photo_mime VARCHAR(50);
