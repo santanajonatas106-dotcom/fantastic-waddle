@@ -1,10 +1,21 @@
 const express = require('express');
+const multer = require('multer');
 const pool = require('../db/pool');
 const config = require('../config');
 const { improveSummary } = require('../services/ai');
 const { streamResumePdf } = require('../services/pdf');
 const { createPreference, getPayment, isApprovedForResume } = require('../services/mercadoPago');
 
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 2 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    if (['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype)) {
+      return cb(null, true);
+    }
+    cb(new Error('Envie uma foto JPG, PNG ou WEBP.'));
+  }
+});
 const router = express.Router();
 
 async function findResume(id) {
@@ -31,7 +42,7 @@ async function approvePaymentForResume(resumeId, paymentId) {
 router.get('/', (req, res) => res.render('home', { price: config.priceBrl }));
 router.get('/criar', (req, res) => res.render('create', { error: null, values: {} }));
 
-router.post('/criar', async (req, res, next) => {
+router.post('/criar', upload.single('foto'), async (req, res, next) => {
   try {
     const values = {
       full_name: String(req.body.full_name || '').trim(),
@@ -62,11 +73,12 @@ router.post('/criar', async (req, res, next) => {
     }
 
     const result = await pool.query(
-      `INSERT INTO resumes (full_name,email,phone,city,target_role,professional_summary,experience,education,skills)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id`,
-      [values.full_name, values.email, values.phone, values.city, values.target_role, values.professional_summary, values.experience, values.education, values.skills]
-    );
-    const id = result.rows[0].id;
+      INSERT INTO resumes (
+  full_name,email,phone,city,target_role,professional_summary,
+  experience,education,skills,photo_data,photo_mime
+)
+VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING id
+    [values.full_name, values.email, values.phone, values.city, values.target_role, values.professional_summary, values.experience, values.education, values.skills, req.file ? req.file.buffer : null, req.file ? req.file.mimetype : null]
     req.session.resumeId = id;
     res.redirect(`/curriculo/${id}`);
   } catch (error) {
