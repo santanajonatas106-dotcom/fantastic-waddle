@@ -36,7 +36,8 @@
     <% } else if (paymentEnabled) { %>
       
         <form method="post" action="/curriculo/<%= resume.id %>/pagar" class="payment-form" onsubmit="if(typeof gtag==='function'){gtag('event','begin_checkout',{currency:'BRL',value:<%= Number(price) %>});}">
-          Pagar <%= Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %> e liberar PDF
+         <button class="button primary" type="submit">
+Pagar <%= Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %> e liberar PDF
         </button>
       </form>
     <% } else { %>
