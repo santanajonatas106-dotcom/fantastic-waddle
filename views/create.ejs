@@ -2,8 +2,9 @@
 <section class="form-wrap">
   <div class="section-heading"><span class="badge">Etapa 1 de 2</span><h1>Conte sua trajetória profissional</h1><p>Use informações verdadeiras. Você poderá conferir tudo antes de baixar.</p></div>
   <% if (error) { %><div class="alert"><%= error %></div><% } %>
-  <form class="form-card" method="post" action="/criar">
-    <div class="grid2">
+  <form class="form-card" method="post" action="/criar" enctype="multipart/form-data">
+  <div class="grid2">
+<label class="full">Foto para o currículo (opcional)<input type="file" name="foto" accept="image/jpeg,image/png,image/webp"></label>
       <label>Nome completo*<input name="full_name" required value="<%= values.full_name || '' %>"></label>
       <label>Cargo desejado*<input name="target_role" required placeholder="Ex.: Auxiliar administrativo" value="<%= values.target_role || '' %>"></label>
       <label>E-mail<input name="email" type="email" value="<%= values.email || '' %>"></label>
